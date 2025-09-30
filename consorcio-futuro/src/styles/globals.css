@@ -1,5 +1,12 @@
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto}
-a{color:inherit;text-decoration:none}
-button{padding:.6rem .9rem;border:1px solid #d0d7de;border-radius:10px;background:#fff;cursor:pointer}
-button:hover{background:#f3f4f6}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,body,#root{height:100%}
+body{ @apply bg-slate-50 text-slate-800 font-body; }
+.glass { @apply bg-white/70 backdrop-blur-md shadow-lg border border-white/40; }
+.gradient-hero{
+  background: radial-gradient(1200px 600px at 20% -10%, #ffd6a5 10%, transparent 60%),
+              radial-gradient(1200px 700px at 120% 0%, #bde0fe 10%, transparent 60%),
+              radial-gradient(1200px 700px at 50% 120%, #cdb4db 10%, transparent 60%);
+}

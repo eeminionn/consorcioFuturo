@@ -1,17 +1,34 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
+import { RocketLaunch } from "@phosphor-icons/react";
 
-export default function Layout() {
+export default function Layout(){
   const { pathname } = useLocation();
+  const NavLink = ({to,children}) => (
+    <Link to={to}
+      className={`px-3 py-2 rounded-xl text-sm font-semibold transition
+      ${pathname===to ? "bg-white/20 text-white" : "text-white/80 hover:text-white"}`}>
+      {children}
+    </Link>
+  );
+
   return (
-    <div className="min-h-screen bg-slate-50">
-      <header style={{display:"flex",gap:12,alignItems:"center",padding:"12px 16px",background:"#0e375f",color:"#fff"}}>
-        <strong>Consorcio FUTURO</strong>
-        <nav style={{display:"flex",gap:10,marginLeft:"auto"}}>
-          <Link to="/" style={{color:"#fff",opacity: pathname==="/" ? 1:0.7}}>Padre</Link>
-          <Link to="/hijo" style={{color:"#fff",opacity: pathname==="/hijo" ? 1:0.7}}>Niño</Link>
-        </nav>
+    <div className="min-h-screen gradient-hero">
+      <header className="sticky top-0 z-50 bg-brand/90 backdrop-blur text-white">
+        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center gap-3">
+          <RocketLaunch size={26} weight="fill" className="text-mint" />
+          <span className="font-display text-lg">Consorcio <b>FUTURO</b></span>
+          <nav className="ml-auto flex gap-2">
+            <NavLink to="/consorcioFuturo">Padre</NavLink>
+            <NavLink to="/vistaHijo">Niño</NavLink>
+          </nav>
+        </div>
       </header>
-      <main style={{padding:16}}><Outlet/></main>
+      <main className="mx-auto max-w-6xl px-4 py-8">
+        <Outlet/>
+      </main>
+      <footer className="text-center py-8 text-slate-600 text-sm">
+        © Consorcio FUTURO — prototipo académico
+      </footer>
     </div>
   );
 }
