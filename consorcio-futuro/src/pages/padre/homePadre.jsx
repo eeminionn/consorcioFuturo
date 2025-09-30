@@ -1,70 +1,114 @@
 // src/pages/padre/homePadre.jsx
 import { motion } from "framer-motion";
-const fade = { initial:{opacity:0,y:10}, animate:{opacity:1,y:0}, transition:{duration:.45} };
+import { Gear, CheckCircle, XCircle } from "@phosphor-icons/react";
 
-export default function HomePadre(){
+export default function HomePadre() {
+  const fadeUp = {
+    initial: { opacity: 0, y: 24 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.4 },
+    transition: { duration: 0.6, ease: "easeOut" },
+  };
+
   return (
-    <motion.div {...fade} className="space-y-8">
-      <header>
-        <h1 className="font-display text-3xl text-brand">Panel del padre</h1>
-        <p className="text-slate-600">Aprueba compras, define límites y mira el progreso.</p>
-      </header>
+    <div className="min-h-screen bg-gradient-to-br from-peach to-lilac p-6">
+      <div className="max-w-6xl mx-auto">
+        {/* Tarjeta contenedora principal */}
+        <motion.div
+          {...fadeUp}
+          className="bg-white/70 backdrop-blur-xl shadow-2xl rounded-3xl p-8"
+        >
+          <h1 className="text-3xl font-display font-bold text-brand mb-2">
+            Panel del padre
+          </h1>
+          <p className="text-slate-600 mb-8">
+            Aprueba compras, define límites y mira el progreso.
+          </p>
 
-      <section className="grid md:grid-cols-3 gap-6">
-        <Card>
-          <h3 className="font-semibold">Solicitudes pendientes</h3>
-          <p className="mt-2 text-sm text-slate-600">Compra $7.000 — Tienda Líder</p>
-          <div className="mt-4 flex gap-2">
-            <Button primary>Aprobar</Button>
-            <Button>Rechazar</Button>
+          {/* Sección con 3 tarjetas */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Solicitudes pendientes */}
+            <motion.div
+              {...fadeUp}
+              transition={{ delay: 0.1 }}
+              className="bg-white shadow-lg rounded-2xl p-6"
+            >
+              <h2 className="text-lg font-semibold text-brand mb-4">
+                Solicitudes pendientes
+              </h2>
+              <p className="text-slate-700 text-sm mb-2">
+                Compra <b>$7.000</b> — <span className="font-medium">Tienda Líder</span>
+              </p>
+              {/* Tags */}
+              <div className="flex gap-2 mb-4">
+                <span className="px-3 py-1 bg-sky-100 text-sky-700 text-xs rounded-full">
+                  Débito
+                </span>
+                <span className="px-3 py-1 bg-peach text-slate-800 text-xs rounded-full">
+                  Comida
+                </span>
+              </div>
+              {/* Botones */}
+              <div className="flex gap-3">
+                <button className="flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-xl shadow hover:bg-brand/90 transition">
+                  <XCircle size={18} weight="bold" /> Rechazar
+                </button>
+                <button className="flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-xl shadow hover:bg-brand/90 transition">
+                  <CheckCircle size={18} weight="bold" /> Aprobar
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Límites */}
+            <motion.div
+              {...fadeUp}
+              transition={{ delay: 0.2 }}
+              className="bg-white shadow-lg rounded-2xl p-6"
+            >
+              <h2 className="text-lg font-semibold text-brand mb-4">Límites</h2>
+              <p className="text-sm text-slate-700">
+                Diario: <b>$5.000</b> • Comercio: <b>Snacks</b>
+              </p>
+              <div className="mt-3 flex items-center gap-3">
+                <input
+                  id="notifLimit"
+                  type="checkbox"
+                  className="scale-125 accent-brand"
+                  defaultChecked
+                />
+                <label htmlFor="notifLimit" className="text-sm text-slate-600">
+                  Notificar &gt; $3.000
+                </label>
+              </div>
+              <button className="mt-4 flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-xl shadow hover:bg-brand/90 transition">
+                <Gear size={18} /> Configurar
+              </button>
+            </motion.div>
+
+            {/* Reporte semanal */}
+            <motion.div
+              {...fadeUp}
+              transition={{ delay: 0.3 }}
+              className="bg-white shadow-lg rounded-2xl p-6"
+            >
+              <h2 className="text-lg font-semibold text-brand mb-4">
+                Reporte semanal
+              </h2>
+              <p className="text-sm text-slate-600 mb-4">
+                Resumen de ahorro y gastos del menor.
+              </p>
+              <button className="bg-brand text-white px-4 py-2 rounded-xl shadow hover:bg-brand/90 transition">
+                Descargar PDF
+              </button>
+            </motion.div>
           </div>
-        </Card>
+        </motion.div>
 
-        <Card>
-          <h3 className="font-semibold">Límites</h3>
-          <p className="mt-2 text-sm text-slate-600">Diario: $5.000 • Comercio: Snacks</p>
-          <div className="mt-4">
-            <Button>Configurar</Button>
-          </div>
-        </Card>
-
-        <Card>
-          <h3 className="font-semibold">Reporte semanal</h3>
-          <p className="mt-2 text-sm text-slate-600">Resumen de ahorro y gastos del menor.</p>
-          <div className="mt-4">
-            <Button primary>Descargar PDF</Button>
-          </div>
-        </Card>
-      </section>
-
-      <footer className="text-center text-slate-500 text-sm">
-        © Consorcio FUTURO — prototipo académico
-      </footer>
-    </motion.div>
-  );
-}
-
-function Card({children}){
-  return (
-    <motion.div
-      whileHover={{ y: -6, scale: 1.01 }}
-      transition={{ type: "spring", stiffness: 200, damping: 16 }}
-      className="rounded-2xl p-5 bg-white/70 backdrop-blur border border-white/50 shadow-sm
-                 hover:shadow-lg hover:bg-white/80">
-      {children}
-    </motion.div>
-  );
-}
-
-function Button({children, primary}){
-  return (
-    <button
-      className={
-        primary
-          ? "px-4 py-2 rounded-xl bg-brand text-white shadow hover:brightness-110"
-          : "px-4 py-2 rounded-xl bg-white border hover:bg-slate-50"
-      }>
-      {children}
-    </button>
+        {/* Footer */}
+        <p className="text-center text-slate-500 text-sm mt-8">
+          © Consorcio FUTURO — prototipo académico
+        </p>
+      </div>
+    </div>
   );
 }

@@ -22,3 +22,26 @@ body {
   margin: 0;
   font-family: var(--font-body);
 }
+/* ===== decor & motion helpers ===== */
+@keyframes floaty { 
+  0%,100% { transform: translateY(0) }
+  50%     { transform: translateY(-8px) }
+}
+.floaty { animation: floaty 5s ease-in-out infinite }
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50% }
+  50%{ background-position: 100% 50% }
+  100%{ background-position: 0% 50% }
+}
+.gradient-blob {
+  background: linear-gradient(135deg, var(--color-peach), var(--color-lilac), var(--color-sky));
+  background-size: 200% 200%;
+  animation: gradientMove 12s ease infinite;
+  filter: blur(30px);
+}
+
+/* soft shadows */
+.shadow-soft { box-shadow: 0 10px 25px rgba(14,55,95,.08) }
+.shadow-glass{ box-shadow: 0 10px 30px rgba(14,55,95,.12) }
+
