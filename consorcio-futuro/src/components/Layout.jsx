@@ -23,8 +23,12 @@ export default function Layout(){
           </nav>
         </div>
       </header>
-      <main className="mx-auto max-w-6xl px-4 py-8">
-        <Outlet/>
+      <main className="mx-auto max-w-6xl px-4 py-10">
+        <div className="rounded-3xl p-1 bg-gradient-to-br from-peach/40 via-sky/40 to-lilac/40">
+        <div className="rounded-3xl bg-white/70 backdrop-blur border border-white/50 p-8">
+        <Outlet />
+        </div>
+        </div>
       </main>
       <footer className="text-center py-8 text-slate-600 text-sm">
         © Consorcio FUTURO — prototipo académico
