@@ -130,7 +130,7 @@ Consorcio Futuro adopta estas tendencias, adaptándolas al contexto chileno y a 
 
 ---
 
-# 5. Hallazgos del análisis (PPT)
+# 5. Hallazgos del análisis 
 
 ### 🔎 Tamaño del mercado  
 - Más del **74,77%** del país cae en la categoría de padres + hijos  
@@ -249,15 +249,4 @@ En términos estratégicos, el proyecto se traduce en:
 
 ---
 
-# 10. Estructura del Repositorio  
 
-```plaintext
-/assets
-   lamina.jpg
-   /ui
-      pantallas_jovenes.png
-      pantallas_padres.png
-   /graficos
-      datos_censo.png
-      educacion_financiera.png
-README.md
