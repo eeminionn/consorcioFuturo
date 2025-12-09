@@ -14,7 +14,8 @@ Explora el prototipo funcional aquí:
 ---
 
 ## 🖼️ Imagen inicial del proyecto  
-![Consorcio Futuro – Lámina principal](lamina.jpg)
+![Consorcio Futuro – Lámina principal](assets/lamina.jpg)
+
 
 ---
 
