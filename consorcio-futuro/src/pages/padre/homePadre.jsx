@@ -1,6 +1,6 @@
 // src/pages/padre/homePadre.jsx
-import { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle, XCircle, Gear, DownloadSimple,
   Bell, ChartBar, PiggyBank, Target, Warning, ChatCircleDots
@@ -66,28 +66,26 @@ export default function HomePadre() {
     setCats((c) => c.map(x => x.name === name ? { ...x, active: !x.active } : x));
 
   // ---- SVG helpers
-  const donut = useMemo(() => {
-    const size = 160, stroke = 16;
-    const r = (size - stroke) / 2;
-    const c = 2 * Math.PI * r;
-    const ahorro = Math.max(0, Math.min(100, ahorroVsGasto.ahorro));
-    const gasto = 100 - ahorro;
-    return { size, stroke, r, c, ahorro, gasto };
-  }, [ahorroVsGasto]);
+  const size = 160, stroke = 16;
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+  const ahorro = Math.max(0, Math.min(100, ahorroVsGasto.ahorro));
+  const gasto = 100 - ahorro;
+  const donut = { size, stroke, r, c, ahorro, gasto };
 
   return (
     <div className="space-y-8">
       {/* HERO / RESUMEN */}
-      <motion.section {...fade} className="grid lg:grid-cols-4 gap-6">
+      <Motion.section {...fade} className="grid lg:grid-cols-4 gap-6">
         <KpiCard icon={<PiggyBank size={26} />} title="Saldo actual" value={`$${formatMiles(saldoActual)}`} chip="+$2.100 esta semana" />
         <KpiCard icon={<Target size={26} />} title="Ahorro del mes" value={`$${formatMiles(ahorroMes)}`} chip="Meta Bicicleta 60%" />
         <KpiCard icon={<ChartBar size={26} />} title="Gasto semanal" value={`$${formatMiles(kpiGastoSem)}`} chip="-8% vs semana pasada"
                  sparkline data={[5,7,6,4,8,5,6]} />
         <KpiCard icon={<Bell size={26} />} title="Alertas" value="3" chip="1 inusual, 1 meta, 1 pendiente" />
-      </motion.section>
+      </Motion.section>
 
       {/* GRÁFICOS */}
-      <motion.section {...fade} className="grid lg:grid-cols-2 gap-6">
+      <Motion.section {...fade} className="grid lg:grid-cols-2 gap-6">
         <Card title="Gastos de la semana" subtitle="(miles de pesos)">
           <BarChart data={gastosSemana} labels={["L","M","X","J","V","S","D"]} />
         </Card>
@@ -104,10 +102,10 @@ export default function HomePadre() {
             </div>
           </div>
         </Card>
-      </motion.section>
+      </Motion.section>
 
       {/* APROBACIONES */}
-      <motion.section {...fade}>
+      <Motion.section {...fade}>
         <Card title="Aprobación de solicitudes" subtitle="Revisa, comenta y aprueba o rechaza">
           <div className="space-y-4">
             {solicitudes.map(s => (
@@ -134,7 +132,7 @@ export default function HomePadre() {
 
                 <AnimatePresence>
                   {feedbackOpen === s.id && (
-                    <motion.div
+                    <Motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -153,17 +151,17 @@ export default function HomePadre() {
                           <Button variant="ghost" onClick={() => { setFeedbackOpen(null); setFeedbackText(""); }}>Cancelar</Button>
                         </div>
                       </div>
-                    </motion.div>
+                    </Motion.div>
                   )}
                 </AnimatePresence>
               </div>
             ))}
           </div>
         </Card>
-      </motion.section>
+      </Motion.section>
 
       {/* LÍMITES */}
-      <motion.section {...fade} className="grid lg:grid-cols-2 gap-6">
+      <Motion.section {...fade} className="grid lg:grid-cols-2 gap-6">
         <Card title="Límites diarios y semanales" subtitle="Controla el gasto del menor">
           <Slider label={`Diario: $${formatMiles(limitDaily)}`} value={limitDaily} min={0} max={20000} step={500} onChange={setLimitDaily} />
           <Slider label={`Semanal: $${formatMiles(limitWeekly)}`} value={limitWeekly} min={0} max={80000} step={1000} onChange={setLimitWeekly} />
@@ -210,10 +208,10 @@ export default function HomePadre() {
             ))}
           </div>
         </Card>
-      </motion.section>
+      </Motion.section>
 
       {/* REPORTES y ALERTAS */}
-      <motion.section {...fade} className="grid lg:grid-cols-2 gap-6">
+      <Motion.section {...fade} className="grid lg:grid-cols-2 gap-6">
         <Card title="Reportes" subtitle="Descarga semanal o mensual (PDF)">
           <div className="flex flex-wrap gap-3">
             <Button onClick={()=>console.log("descargar semanal")}><DownloadSimple size={16}/> Semanal</Button>
@@ -237,7 +235,7 @@ export default function HomePadre() {
             ))}
           </div>
         </Card>
-      </motion.section>
+      </Motion.section>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import HomePadre from "../pages/padre/homePadre";
 import HomeHijo from "../pages/hijo/homeHijo";
 
